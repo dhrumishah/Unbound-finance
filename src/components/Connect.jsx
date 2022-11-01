@@ -1,18 +1,23 @@
 import React from "react";
 import "/src/App.css";
-import { useAccount, useConnect, useDisconnect } from "wagmi";
+import {
+  useAccount,
+  useConnect,
+  useDisconnect,
+  useBalance,
+  useNetwork,
+} from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
-import { useBalance, useNetwork } from "wagmi";
 
 const Connect = () => {
-  const { connector: activeConnector, isConnected, address } = useAccount();
+  const { isConnected, address } = useAccount();
 
-  const { data, isError, isLoading } = useBalance({
+  const { data } = useBalance({
     addressOrName: address,
-    chainId: 5,
+    // chainId: 5,
   });
-  console.log(data?.formatted);
-  const { chain } = useNetwork();
+  // console.log(data?.formatted);
+  const { chain, chains } = useNetwork();
   const { connect } = useConnect({
     connector: new InjectedConnector(),
   });
@@ -21,11 +26,18 @@ const Connect = () => {
   if (isConnected)
     return (
       <div className="connect-wallet">
-        Connected to {address}
+        Address: {address}
         <p className="text-red-800">
           Balance: {data?.formatted} {data?.symbol}
         </p>
-        {chain && <div>Connected to {chain.name}</div>}
+        {chain && (
+          <div className="connect-chain">Connected to: {chain.name}</div>
+        )}
+        {chains && (
+          <div>
+            Available chains: {chains.map((chain) => chain.name + ", ")}
+          </div>
+        )}
         <button onClick={() => disconnect()}>Disconnect</button>
       </div>
     );

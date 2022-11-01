@@ -12,7 +12,7 @@ import { getDefaultProvider } from "ethers";
 import { publicProvider } from "wagmi/providers/public";
 
 const { chains, provider, webSocketProvider } = configureChains(
-  [chain.mainnet, chain.polygon, chain.goerli],
+  [chain.mainnet, chain.polygon, chain.goerli, chain.polygonMumbai],
   [publicProvider()]
 );
 const client = createClient({
