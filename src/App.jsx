@@ -1,12 +1,24 @@
 import React from "react";
 import "./App.css";
 import Connect from "./components/Connect";
-import { WagmiConfig, createClient } from "wagmi";
+import {
+  WagmiConfig,
+  createClient,
+  configureChains,
+  chain,
+  defaultChains,
+} from "wagmi";
 import { getDefaultProvider } from "ethers";
+import { publicProvider } from "wagmi/providers/public";
 
+const { chains, provider, webSocketProvider } = configureChains(
+  [chain.mainnet, chain.polygon, chain.goerli],
+  [publicProvider()]
+);
 const client = createClient({
   autoConnect: true,
-  provider: getDefaultProvider(),
+  provider,
+  webSocketProvider,
 });
 
 function App() {
