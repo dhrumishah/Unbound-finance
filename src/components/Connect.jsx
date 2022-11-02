@@ -33,11 +33,6 @@ const Connect = () => {
         {chain && (
           <div className="connect-chain">Connected to: {chain.name}</div>
         )}
-        {chains && (
-          <div>
-            Available chains: {chains.map((chain) => chain.name + ", ")}
-          </div>
-        )}
         <button onClick={() => disconnect()}>Disconnect</button>
       </div>
     );
