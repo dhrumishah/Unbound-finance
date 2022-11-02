@@ -55,9 +55,7 @@ button:hover {
 .connect-wallet {
   font-size: 1.3em;
 }
-.connect-chain {
-  margin-bottom: 1rem;
-}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

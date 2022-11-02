@@ -30,9 +30,7 @@ const Connect = () => {
         <p className="text-red-800">
           Balance: {data?.formatted} {data?.symbol}
         </p>
-        {chain && (
-          <div className="connect-chain">Connected to: {chain.name}</div>
-        )}
+        {chain && <div>Connected to: {chain.name}</div>}
         <button onClick={() => disconnect()}>Disconnect</button>
       </div>
     );
